@@ -609,23 +609,14 @@ export class ReactNativeModal extends React.Component<ModalProps, State> {
 
     if (this.contentRef) {
       this.props.onModalWillShow && this.props.onModalWillShow();
-      if (this.interactionHandle == null) {
-        this.interactionHandle = InteractionManager.createInteractionHandle();
-      }
-      this.contentRef
-        .animate(this.animationIn, this.props.animationInTiming)
-        .then(() => {
-          this.isTransitioning = false;
-          if (this.interactionHandle) {
-            InteractionManager.clearInteractionHandle(this.interactionHandle);
-            this.interactionHandle = null;
-          }
-          if (!this.props.isVisible) {
-            this.close();
-          } else {
-            this.props.onModalShow();
-          }
-        });
+        this.isTransitioning = false;
+          
+        if (!this.props.isVisible) {
+          this.close();
+        } else {
+           this.props.onModalShow();
+        }
+       };
     }
   };
 
